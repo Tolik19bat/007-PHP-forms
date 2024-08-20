@@ -1,16 +1,16 @@
 <?php
 // Проверка, была ли отправлена форма
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     // Проверка, было ли заполнено поле file_name
     if (empty($_POST['file_name'])) {
-        header('Location: ' . $_SERVER['PHP_SELF']);
+        header('Location: index.html');
         exit();
     }
 
     // Проверка, был ли передан файл
     if (!isset($_FILES['content']) || $_FILES['content']['error'] !== UPLOAD_ERR_OK) {
-        header('Location: ' . $_SERVER['PHP_SELF']);
+        header('Location: index.html');
         exit();
     }
 
@@ -34,6 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Ошибка при загрузке файла.";
     }
 } else {
-    header('Location: ' . $_SERVER['PHP_SELF']);
+    header('Location: index.html');
     exit();
 }
